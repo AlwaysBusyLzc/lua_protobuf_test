@@ -1,3 +1,0 @@
-/mnt/c/workspace/test/cpp/lua_test/build/CMakeFiles/lua_test.dir
-/mnt/c/workspace/test/cpp/lua_test/build/CMakeFiles/edit_cache.dir
-/mnt/c/workspace/test/cpp/lua_test/build/CMakeFiles/rebuild_cache.dir
