@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,-E CMakeFiles/lua_test.dir/main.cpp.o -o ../lua_test  -llua 

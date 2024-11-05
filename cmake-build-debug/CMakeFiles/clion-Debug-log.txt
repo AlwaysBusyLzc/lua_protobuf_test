@@ -1,0 +1,4 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /mnt/c/workspace/test/cpp/lua_test -B /mnt/c/workspace/test/cpp/lua_test/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/c/workspace/test/cpp/lua_test/cmake-build-debug
