@@ -1,2 +1,3 @@
-# lua_test
- 测试protobuf在lua中使用
+# lua_protobuf test
+ 测试 lua_protobuf 的使用
+ lua 版本 5.4 环境配置见 lua.env.sh
