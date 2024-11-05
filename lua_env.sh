@@ -15,6 +15,8 @@ cd luarocks-3.11.1/
 
 # 安装 lua-protobuf
 sudo luarocks install lua-protobuf
+# 安装 luasocket
+sudo luarocks install luasocket
 
 
 
