@@ -9,8 +9,13 @@
 --print("after modify:" .. package.cpath)
 
 local pb = require "pb"
+local conv = require "pb.conv"
 local protoc = require "protoc"
 local socket = require "socket"
+
+--pb.option("int64_as_string")
+
+
 
 local function get_milliseconds()
     return socket.gettime() * 1000
@@ -50,15 +55,15 @@ pb.load(content)
 --    }
 --}
 
-local data1 = {
-    name = "jordan",
-    age  = 23,
-    --phone = {
-    --    "213423423",
-    --    "sdgasdgasdg",
-    --    "234234234",
-    --}
-}
+--local data1 = {
+--    name = "jordan",
+--    age  = 23,
+--    --phone = {
+--    --    "213423423",
+--    --    "sdgasdgasdg",
+--    --    "234234234",
+--    --}
+--}
 
 
 -- 将Lua表编码为二进制数据
@@ -70,13 +75,60 @@ local data1 = {
 --local data2 = assert(pb.decode("person", bytes))
 --print(require "serpent".block(data2))
 
+local max_uint64 = 18446744073709551615
+local max_int64 = 9223372036854775807
+local testint = 256
+--testint = testint + 2
+--print(testint)
+
+local teststr = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabc"
+--print(teststr)
+
+
+local data_int = {
+    n1 = testint,
+    n2 = testint,
+    n3 = testint,
+    n4 = testint,
+    n5 = testint,
+    n6 = testint,
+}
+
+local data_str = {
+    s1 = teststr
+}
+
+local data_arr = {
+    arr1 = {
+        9223372036854775807,
+        9223372036854775807,
+        9223372036854775807,
+        9223372036854775807,
+        9223372036854775807,
+        9223372036854775807
+    },
+}
+
 
 local start_time = get_milliseconds()
-for i = 1, 1000000 do
-    bytes = pb.encode("person", data1)
-    data2 = pb.decode("person", bytes)
+local bytes
+for i = 1, 10000000 do
+    bytes = pb.encode("testarr", data_arr)
 end
+local end_time1 = get_milliseconds()
+print("encode total spend time ".. (end_time1 - start_time) .. ' ms')
 
-print("total spend time ".. (get_milliseconds() - start_time) .. ' ms')
+
+local data2
+for i = 1, 10000000 do
+    data2 = pb.decode("testarr", bytes)
+end
+local end_time2 = get_milliseconds()
+print("decode total spend time ".. (end_time2 - end_time1) .. ' ms')
 
 print(require "serpent".block(data2))
+
+num = data2.arr1
+print(num)
+print("type: " .. type(num))
+print(data2.arr1[3])
